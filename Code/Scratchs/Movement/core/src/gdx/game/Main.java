@@ -14,7 +14,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Main extends ApplicationAdapter {
     SpriteBatch batch;
     Texture img1;
-    Texture img2;
     Sprite sprMstanding;
 
 
@@ -35,7 +34,7 @@ public class Main extends ApplicationAdapter {
             sprMstanding.translateX(-1f);
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT))
             sprMstanding.translateX(1f);
-  Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
 
