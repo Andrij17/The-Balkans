@@ -21,7 +21,7 @@ public class Main extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		img2 = new Texture("Goomba.png");
         sprGoomba= new Sprite (img2);
-        sprGoomba.setPosition(0,0);
+        sprGoomba.setPosition(Gdx.graphics.getWidth(),0);
         sprGoomba.setScale(1f);
 
 
@@ -29,7 +29,7 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-        //sprGoomba.translateX(-1f);
+        sprGoomba.translateX(-1f);
 	    Gdx.gl.glClearColor(0, 0, 0, 0);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
