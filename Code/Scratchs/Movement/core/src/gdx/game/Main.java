@@ -25,22 +25,28 @@ public class Main extends ApplicationAdapter {
         sprMstanding.setPosition(Gdx.graphics.getWidth()/2-sprMstanding.getWidth()/2, Gdx.graphics.getHeight()/2-sprMstanding.getHeight()/2);
         sprMstanding.setScale(1f);
 
+
     }
 
 	@Override
 	public void render () {
+
         //Mario keyboard control (left & right)
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT))
             sprMstanding.translateX(-1f);
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT))
             sprMstanding.translateX(1f);
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
+        //draw Mario
+
+
 
 
         batch.draw(sprMstanding, sprMstanding.getX(),  sprMstanding.getY(),sprMstanding.getWidth()/2,sprMstanding.getHeight()/2,
                 sprMstanding.getWidth(),sprMstanding.getHeight(),sprMstanding.getScaleX(),sprMstanding.getScaleY(),sprMstanding.getRotation());
+
 
         batch.end();
 
