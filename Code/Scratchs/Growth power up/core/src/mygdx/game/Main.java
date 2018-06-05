@@ -2,7 +2,7 @@ package mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
+
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -10,32 +10,38 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
 public class Main extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-     Texture img1;
+    SpriteBatch batch;
+    Texture txImg;
     Sprite sprGrowth;
 
+
     @Override
-	public void create () {
-		batch = new SpriteBatch();
-		img1 = new Texture("growth pwoer up.png");
-        sprGrowth = new Sprite(img1);
-        sprGrowth.setPosition(0,0);
+    public void create () {
+        batch = new SpriteBatch();
+        txImg = new Texture("Mario_power_up.png");
+        sprGrowth= new Sprite (txImg);
+        sprGrowth.setPosition(Gdx.graphics.getWidth(),0);
         sprGrowth.setScale(1f);
+
+
     }
 
-	@Override
-	public void render () {
+    @Override
+    public void render () {
+        sprGrowth.translateX(-1f);
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         sprGrowth.draw(batch);
         batch.end();
-	}
-	
-	@Override
-	public void dispose () {
-		batch.dispose();
-		img1.dispose();
-	}
+
+
+
+    }
+
+    @Override
+    public void dispose () {
+        batch.dispose();
+        txImg.dispose();
+    }
 }
