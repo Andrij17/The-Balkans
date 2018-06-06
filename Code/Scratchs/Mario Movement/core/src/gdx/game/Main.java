@@ -15,6 +15,7 @@ public class Main extends ApplicationAdapter {
     SpriteBatch batch;
     Texture img1;
     Sprite sprMstanding;
+    double dYspeed;
 
 
     @Override
@@ -22,8 +23,9 @@ public class Main extends ApplicationAdapter {
         batch = new SpriteBatch();
         img1 = new Texture("MStanding.png");
         sprMstanding = new Sprite ( img1);
-        sprMstanding.setPosition(Gdx.graphics.getWidth()/2-sprMstanding.getWidth()/2, Gdx.graphics.getHeight()/2-sprMstanding.getHeight()/2);
+        sprMstanding.setPosition(50, 50);
         sprMstanding.setScale(1f);
+
 
 
     }
@@ -33,9 +35,17 @@ public class Main extends ApplicationAdapter {
 
         //Mario keyboard control (left & right)
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT))
-            sprMstanding.translateX(-1f);
+            sprMstanding.translateX(-4f);
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT))
-            sprMstanding.translateX(1f);
+            sprMstanding.translateX(4f);
+        if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+            dYspeed=10;
+            sprMstanding.translateY(10f);
+        }
+        if(sprMstanding.getY()>50){
+            dYspeed-=1;
+            sprMstanding.translateY((float) dYspeed);
+        }
         Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
