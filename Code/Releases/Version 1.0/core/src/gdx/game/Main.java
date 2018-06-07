@@ -8,27 +8,28 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Main extends ApplicationAdapter {
 	SpriteBatch batch;
-	Texture img;
-	
+	SprMario sprMario;
+    SprGoomba sprGoomba;
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-
-		//img = new Texture("badlogic.jpg");
+		sprMario= new SprMario(50,50,50,50);
+        sprGoomba=new SprGoomba(50,50,100,100);
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+		Gdx.gl.glClearColor(0, 0.498f, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
-	}
-	
-	@Override
-	public void dispose () {
-		batch.dispose();
-		img.dispose();
-	}
+        sprMario.draw(batch);
+        sprGoomba.draw(batch);
+        batch.end();
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+    }   //Kieran's final project
 }
