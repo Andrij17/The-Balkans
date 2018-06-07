@@ -22,12 +22,9 @@ public class Main extends ApplicationAdapter {
 	public void create () {
         batch = new SpriteBatch();
         img1 = new Texture("MStanding.png");
-        sprMstanding = new Sprite ( img1);
+        sprMstanding = new Sprite (img1);
         sprMstanding.setPosition(50, 50);
         sprMstanding.setScale(1f);
-
-
-
     }
 
 	@Override
@@ -46,6 +43,10 @@ public class Main extends ApplicationAdapter {
             dYspeed-=1;
             sprMstanding.translateY((float) dYspeed);
         }
+        if(sprMstanding.getY()>400){
+            sprMstanding.setY(400);
+        }
+
         Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
