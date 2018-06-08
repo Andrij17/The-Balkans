@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import javax.swing.plaf.synth.Region;
 
-public class MyGdxGame extends ApplicationAdapter {
+public class Stage extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture teximg;
 	TextureRegion texbackgroundTexture;

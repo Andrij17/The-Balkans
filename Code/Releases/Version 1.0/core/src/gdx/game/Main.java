@@ -6,11 +6,14 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Main extends ApplicationAdapter {
 	SpriteBatch batch;
 	SprMario sprMario;
     SprGoomba sprGoomba;
+    Texture teximg;
+    TextureRegion texbackgroundTexture;
     double dYspeed;
 
 	@Override
@@ -18,6 +21,8 @@ public class Main extends ApplicationAdapter {
 		batch = new SpriteBatch();
         sprMario= new SprMario(90,160,50,50);
         sprGoomba=new SprGoomba(690,700,600,50);
+        teximg = new Texture("background.jpg");
+        texbackgroundTexture = new TextureRegion(new Texture("background.jpg"), 0, 0, 640, 500);
     }
 
 	@Override
@@ -38,15 +43,19 @@ public class Main extends ApplicationAdapter {
         if(sprMario.getY()>400){
             sprMario.setY(400);
         }
+        if(sprGoomba.getX()==-60){
+            sprGoomba.setX(600);
+        }
+        batch.begin();
+        //Background
+        batch.draw(texbackgroundTexture, 0, 0);
+        batch.draw(texbackgroundTexture, 0, Gdx.graphics.getHeight());
 
         //Goomba sliding
-        sprGoomba.setX(sprGoomba.getX() -1);
-
-		Gdx.gl.glClearColor(0, 0.498f, 1, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
+        sprGoomba.setX(sprGoomba.getX() -2);
         sprMario.draw(batch);
         sprGoomba.draw(batch);
+
         batch.end();
     }
 
