@@ -46,6 +46,8 @@ public class Main extends ApplicationAdapter {
         if(sprGoomba.getX()==-60){
             sprGoomba.setX(600);
         }
+
+
         batch.begin();
         //Background
         batch.draw(texbackgroundTexture, 0, 0);
