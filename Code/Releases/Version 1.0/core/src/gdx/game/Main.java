@@ -34,24 +34,24 @@ public class Main extends ApplicationAdapter {
             sprMario.setX(sprMario.getX() +4);
         if(Gdx.input.isKeyPressed(Input.Keys.UP)){
             dYspeed=10;
-            sprMario.setY(sprMario.getY() +9);
+            sprMario.setY(sprMario.getY() +8);
         }
         if(sprMario.getY()>50){
             dYspeed-=1;
             sprMario.translateY((float) dYspeed);
         }
-        if(sprMario.getY()>400){
-            sprMario.setY(400);
+        if(sprMario.getY()>Gdx.graphics.getHeight()){
+            sprMario.setY(Gdx.graphics.getHeight());
         }
         if(sprGoomba.getX()==-60){
-            sprGoomba.setX(600);
+            sprGoomba.setX(Gdx.graphics.getWidth());
         }
 
 
         batch.begin();
         //Background
         batch.draw(texbackgroundTexture, 0, 0);
-        batch.draw(texbackgroundTexture, 0, Gdx.graphics.getHeight());
+        //batch.draw(texbackgroundTexture, 0, Gdx.graphics.getHeight());
 
         //Goomba sliding
         sprGoomba.setX(sprGoomba.getX() -2);
