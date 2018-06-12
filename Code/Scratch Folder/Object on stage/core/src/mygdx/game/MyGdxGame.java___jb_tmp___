@@ -32,7 +32,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		batch.begin();
 		batch.draw(texbackgroundTexture, 0, 0);
 		batch.draw(texbackgroundTexture, 0, Gdx.graphics.getHeight());
-        batch.draw(sprPlatfrom, 320, 250);
+        batch.draw(sprPlatfrom, 250, 250);
 		batch.end();
 	}
 
