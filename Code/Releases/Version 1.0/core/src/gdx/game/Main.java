@@ -12,6 +12,7 @@ public class Main extends ApplicationAdapter {
 	SpriteBatch batch;
 	SprMario sprMario;
     SprGoomba sprGoomba;
+    SprPowerup sprPowerup;
     Texture teximg;
     TextureRegion texbackgroundTexture;
     double dYspeed;
@@ -19,8 +20,9 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-        sprMario= new SprMario(90,160,50,50);
+        sprMario= new SprMario(80,135,50,50);
         sprGoomba=new SprGoomba(690,700,600,50);
+        sprPowerup=new SprPowerup(0, 0, "Growth_power_up.png");
         teximg = new Texture("background.jpg");
         texbackgroundTexture = new TextureRegion(new Texture("background.jpg"), 0, 0, 640, 500);
     }
@@ -40,21 +42,27 @@ public class Main extends ApplicationAdapter {
             dYspeed-=1;
             sprMario.translateY((float) dYspeed);
         }
-        if(sprMario.getY()>Gdx.graphics.getHeight()){
-            sprMario.setY(Gdx.graphics.getHeight());
+        //Bounds
+        if(sprMario.getY()>Gdx.graphics.getHeight()-sprMario.getHeight()){
+            sprMario.setY(Gdx.graphics.getHeight()-sprMario.getHeight());
+        }
+        if(sprMario.getX()>Gdx.graphics.getWidth()-sprMario.getWidth()){
+            sprMario.setX(Gdx.graphics.getWidth()-sprMario.getWidth());
+        }
+        if(sprMario.getX()<0){
+            sprMario.setX(0);
         }
         if(sprGoomba.getX()==-60){
             sprGoomba.setX(Gdx.graphics.getWidth());
         }
 
+        //Goomba sliding
+        sprGoomba.setX(sprGoomba.getX() -2);
 
         batch.begin();
         //Background
         batch.draw(texbackgroundTexture, 0, 0);
-        //batch.draw(texbackgroundTexture, 0, Gdx.graphics.getHeight());
-
-        //Goomba sliding
-        sprGoomba.setX(sprGoomba.getX() -2);
+        sprPowerup.draw(batch);
         sprMario.draw(batch);
         sprGoomba.draw(batch);
 
