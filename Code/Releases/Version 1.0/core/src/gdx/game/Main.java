@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import java.util.Random;
 
 public class Main extends ApplicationAdapter {
 	SpriteBatch batch;
@@ -17,18 +18,20 @@ public class Main extends ApplicationAdapter {
     SprPowerup sprPowerupSpeed;
     Texture teximg;
     TextureRegion texbackgroundTexture;
+    Random rand = new Random();
     double dYspeedM;
     double dYspeedP;
-    int i;
+    int i,n = rand.nextInt(1700) + 1;
+
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-        sprMario= new SprMario(80,135,50,50);
+        sprMario= new SprMario(60,95,50,50);
         sprGoomba=new SprGoomba(690,700,600,50);
-        sprPowerupGrowth=new SprPowerup(0, 50, "Growth_power_up.png");
-        sprPowerupInvincibility=new SprPowerup(0, 50, "Invincibility_power_up.png");
-        sprPowerupSpeed=new SprPowerup(0, 50, "speed_power_up.png");
+        sprPowerupGrowth=new SprPowerup(600, 50, "Growth_power_up.png");
+        sprPowerupInvincibility=new SprPowerup(600, 50, "Invincibility_power_up.png");
+        sprPowerupSpeed=new SprPowerup(600, 50, "speed_power_up.png");
         teximg = new Texture("background.jpg");
         texbackgroundTexture = new TextureRegion(new Texture("background.jpg"), 0, 0, 640, 500);
     }
@@ -62,22 +65,23 @@ public class Main extends ApplicationAdapter {
             sprGoomba.setX(Gdx.graphics.getWidth());
         }
         //Goomba sliding
-        sprGoomba.setX(sprGoomba.getX() -2);
-        //Growth Powerup jumping
+        sprGoomba.setX(sprGoomba.getX()-2);
+        //Growth Powerup spawning
+        n++;
         sprPowerupGrowth.setX(sprPowerupGrowth.getX() -5);
-        i++;
-        if(i%17==0){
-            dYspeedP=10;
-            sprPowerupGrowth.setY(sprPowerupGrowth.getY() +8);
+        if(n%1400==0){
+            sprPowerupGrowth.setX(600);
         }
-
-
-
-        if(sprPowerupGrowth.getY()>50){
-            dYspeedP-=1;
-            sprPowerupGrowth.translateY((float) dYspeedP);
+        //Invincibility Powerup spawning
+        sprPowerupInvincibility.setX(sprPowerupInvincibility.getX() -5);
+        if(n%2963==0){
+            sprPowerupInvincibility.setX(600);
         }
-
+        //Speed Powerup spawning
+        sprPowerupSpeed.setX(sprPowerupSpeed.getX() -5);
+        if(n%2129==0){
+            sprPowerupSpeed.setX(600);
+        }
 
         batch.begin();
         batch.draw(texbackgroundTexture, 0, 0);
@@ -86,7 +90,6 @@ public class Main extends ApplicationAdapter {
         sprPowerupSpeed.draw(batch);
         sprMario.draw(batch);
         sprGoomba.draw(batch);
-
         batch.end();
     }
 
