@@ -16,12 +16,15 @@ public class Main extends ApplicationAdapter {
     SprPowerup sprPowerupGrowth;
     SprPowerup sprPowerupInvincibility;
     SprPowerup sprPowerupSpeed;
+    SprRectangle sprRectangle;
     Texture teximg;
     TextureRegion texbackgroundTexture;
-    Random rand = new Random();
+    Random rand1 = new Random();
+    Random rand2 = new Random();
     double dYspeedM;
     double dYspeedP;
-    int i,n = rand.nextInt(1700) + 1;
+    int n = rand1.nextInt(5000) + 1;
+    double d = rand2.nextInt(1001) / 1000;
 
 
 	@Override
@@ -32,6 +35,7 @@ public class Main extends ApplicationAdapter {
         sprPowerupGrowth=new SprPowerup(600, 50, "Growth_power_up.png");
         sprPowerupInvincibility=new SprPowerup(600, 50, "Invincibility_power_up.png");
         sprPowerupSpeed=new SprPowerup(600, 50, "speed_power_up.png");
+        sprRectangle=new SprRectangle(600, 250, "Platform for computer science_-1_.png");
         teximg = new Texture("background.jpg");
         texbackgroundTexture = new TextureRegion(new Texture("background.jpg"), 0, 0, 640, 500);
     }
@@ -55,31 +59,44 @@ public class Main extends ApplicationAdapter {
         if(sprMario.getY()>Gdx.graphics.getHeight()-sprMario.getHeight()){
             sprMario.setY(Gdx.graphics.getHeight()-sprMario.getHeight());
         }
+        if(sprMario.getY()<50){
+            sprMario.setY(50);
+        }
         if(sprMario.getX()>Gdx.graphics.getWidth()-sprMario.getWidth()){
             sprMario.setX(Gdx.graphics.getWidth()-sprMario.getWidth());
         }
         if(sprMario.getX()<0){
             sprMario.setX(0);
         }
-        if(sprGoomba.getX()==-60){
-            sprGoomba.setX(Gdx.graphics.getWidth());
-        }
+
         //Goomba sliding
         sprGoomba.setX(sprGoomba.getX()-2);
-        //Growth Powerup spawning
+        if(sprGoomba.getX()==-sprGoomba.getWidth()){
+            sprGoomba.setX(Gdx.graphics.getWidth());
+        }
+
+        //Platform sliding
+        sprRectangle.setX(sprRectangle.getX()-1);
+        if(sprRectangle.getX()==-sprRectangle.getWidth()){
+            sprRectangle.setX(Gdx.graphics.getWidth());
+        }
+
         n++;
+        //Growth Powerup spawning
         sprPowerupGrowth.setX(sprPowerupGrowth.getX() -5);
         if(n%1400==0){
             sprPowerupGrowth.setX(600);
         }
+
         //Invincibility Powerup spawning
-        sprPowerupInvincibility.setX(sprPowerupInvincibility.getX() -5);
+        sprPowerupInvincibility.setX(sprPowerupInvincibility.getX() -6);
         if(n%2963==0){
             sprPowerupInvincibility.setX(600);
         }
+
         //Speed Powerup spawning
         sprPowerupSpeed.setX(sprPowerupSpeed.getX() -5);
-        if(n%2129==0){
+        if(n % 2129 == 0){
             sprPowerupSpeed.setX(600);
         }
 
@@ -88,6 +105,7 @@ public class Main extends ApplicationAdapter {
         sprPowerupGrowth.draw(batch);
         sprPowerupInvincibility.draw(batch);
         sprPowerupSpeed.draw(batch);
+        sprRectangle.draw(batch);
         sprMario.draw(batch);
         sprGoomba.draw(batch);
         batch.end();
