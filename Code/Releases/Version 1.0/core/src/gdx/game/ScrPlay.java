@@ -1,17 +1,19 @@
 package gdx.game;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import java.util.Random;
 
-public class Main extends ApplicationAdapter {
-	SpriteBatch batch;
-	SprMario sprMario;
+
+
+public class ScrPlay {
+    SpriteBatch batch;
+    OrthographicCamera oc;
+    SprMario sprMario;
     SprGoomba sprGoomba;
     SprPowerup sprPowerupGrowth;
     SprPowerup sprPowerupInvincibility;
@@ -27,9 +29,16 @@ public class Main extends ApplicationAdapter {
     double d = rand2.nextInt(1001) / 1000;
 
 
-	@Override
-	public void create () {
-		batch = new SpriteBatch();
+    public ScrMenu(Game _gamMenu) {  //Referencing the main class.
+        Game = _Game;
+    }
+
+    @Override
+    public void create () {
+        batch = new SpriteBatch();
+        oc = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        oc.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        oc.update();
         sprMario= new SprMario(60,95,50,50);
         sprGoomba=new SprGoomba(690,700,600,50);
         sprPowerupGrowth=new SprPowerup(600, 50, "Growth_power_up.png");
@@ -40,8 +49,8 @@ public class Main extends ApplicationAdapter {
         texbackgroundTexture = new TextureRegion(new Texture("background.jpg"), 0, 0, 640, 500);
     }
 
-	@Override
-	public void render () {
+    @Override
+    public void render () {
         //Mario keyboard control
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT))
             sprMario.setX(sprMario.getX() -4);
