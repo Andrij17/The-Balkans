@@ -12,11 +12,11 @@ public class ScrMenu {
     MarioGame marioGame;
     SprRectangle btnPlay;
     MarioGame marioGame;
-    Texture txButtonP, txButtonT, txNamM;
+/*    Texture txButtonP, txButtonT, txNamM;*/
     OrthographicCamera oc;
     SpriteBatch batch;
 
-    public ScrMenu(MarioGame _MarioGame) {  //Referencing the main class.
+    public ScrMenu(MarioGame _marioGame) {  //Referencing the main class.
         marioGame = _marioGame;
     }
 
@@ -39,7 +39,7 @@ public class ScrMenu {
         btnPlay.draw(batch);
         batch.end();
     }
-
+/*
     @Override
     public void resize(int width, int height) {
     }
@@ -54,15 +54,14 @@ public class ScrMenu {
 
     @Override
     public void hide() {
-    }
+    }*/
 
     @Override
     public void dispose() {
         batch.dispose();
-        txNamM.dispose();
     }
 
-    @Override
+   /* @Override
     public boolean keyDown(int keycode) {
         return false;
     }
@@ -76,13 +75,13 @@ public class ScrMenu {
     public boolean keyTyped(char character) {
         return false;
     }
-
+*/
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if (button == Input.Buttons.LEFT) {
             if (isHit(screenX, screenY, btnPlay)) {
                 System.out.println("Hit Play");
-                game.updateState(1);
+                marioGame.updateState(1);
             }
         }
         return false;
