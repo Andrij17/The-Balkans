@@ -16,8 +16,8 @@ public class ScrMenu {
     SpriteBatch batch;
     Sprite sprNamM;
 
-    public ScrMenu(Game _gamMenu) {  //Referencing the main class.
-        Game = _Game;
+    public ScrMenu(Game _game) {  //Referencing the main class.
+        Game = _game;
     }
 
     @Override
