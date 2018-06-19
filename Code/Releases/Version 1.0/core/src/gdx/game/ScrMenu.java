@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class ScrMenu implements Screen, InputProcessor {
     MarioGame marioGame;
     SprRectangle btnPlay;
-    MarioGame marioGame;
+    //MarioGame marioGame;
 /*    Texture txButtonP, txButtonT, txNamM;*/
     OrthographicCamera oc;
     SpriteBatch batch;
@@ -41,14 +41,14 @@ public class ScrMenu implements Screen, InputProcessor {
         btnPlay.draw(batch);
         batch.end();
     }
-/*
+
     @Override
     public void resize(int width, int height) {
     }
 
     @Override
     public void pause() {
-    }*/
+    }
 
     @Override
     public void resume() {
@@ -63,7 +63,7 @@ public class ScrMenu implements Screen, InputProcessor {
         batch.dispose();
     }
 
-   /* @Override
+    @Override
     public boolean keyDown(int keycode) {
         return false;
     }
@@ -77,7 +77,7 @@ public class ScrMenu implements Screen, InputProcessor {
     public boolean keyTyped(char character) {
         return false;
     }
-*/
+
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if (button == Input.Buttons.LEFT) {
@@ -88,7 +88,7 @@ public class ScrMenu implements Screen, InputProcessor {
         }
         return false;
     }
-/*
+
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         return false;
@@ -107,7 +107,7 @@ public class ScrMenu implements Screen, InputProcessor {
     @Override
     public boolean scrolled(int amount) {
         return false;
-    }*/
+    }
 
     public boolean isHit(int nX, int nY, Sprite sprBtn) {
         if (nX > sprBtn.getX() && nX < sprBtn.getX() + sprBtn.getWidth() && nY > sprBtn.getY() && nY < sprBtn.getY() + sprBtn.getHeight()) {

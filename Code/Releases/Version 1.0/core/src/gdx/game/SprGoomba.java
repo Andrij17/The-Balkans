@@ -9,5 +9,6 @@ public class SprGoomba extends Sprite {
         super(new Texture(Gdx.files.internal("Goomba.png"))); //Kieran's final project
         setSize(nW, nH);
         setPosition(nX, nY);
+        setFlip(false, false);
     }
 }
