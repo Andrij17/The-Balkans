@@ -30,7 +30,8 @@ public class ScrPlay {
     double d = rand2.nextInt(1001) / 1000;
 
 
-    public ScrMenu(MarioGame _MarioGame) {  //Referencing the main class.
+    public
+    ScrPlay(MarioGame _marioGame) {  //Referencing the main class.
         marioGame = _marioGame;
     }
 
