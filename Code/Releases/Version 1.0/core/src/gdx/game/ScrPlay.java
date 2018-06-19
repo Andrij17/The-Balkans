@@ -2,6 +2,8 @@ package gdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -10,7 +12,7 @@ import java.util.Random;
 
 
 
-public class ScrPlay {
+public class ScrPlay  implements Screen, InputProcessor {
     SpriteBatch batch;
     MarioGame marioGame;
     OrthographicCamera oc;
@@ -121,9 +123,16 @@ public class ScrPlay {
         sprGoomba.draw(batch);
         batch.end();
     }
+    @Override
+    public void resume() {
+    }
+
+    @Override
+    public void hide() {
+    }
 
     @Override
     public void dispose() {
-        super.dispose();
+        batch.dispose();
     }   //Kieran's final project
 }

@@ -2,13 +2,15 @@ package gdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class ScrMenu {
+public class ScrMenu implements Screen, InputProcessor {
     MarioGame marioGame;
     SprRectangle btnPlay;
     MarioGame marioGame;
@@ -26,7 +28,7 @@ public class ScrMenu {
         oc.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         oc.update();
         batch = new SpriteBatch();
-        btnPlay = new SprRectangle(100, 50, 0, Gdx.graphics.getHeight() - 50, "Play_button.jpg");
+        btnPlay = new SprRectangle(100, 50, "Play_button.jpg");
         Gdx.input.setInputProcessor(this);
     }
 
@@ -46,7 +48,7 @@ public class ScrMenu {
 
     @Override
     public void pause() {
-    }
+    }*/
 
     @Override
     public void resume() {
@@ -54,7 +56,7 @@ public class ScrMenu {
 
     @Override
     public void hide() {
-    }*/
+    }
 
     @Override
     public void dispose() {
