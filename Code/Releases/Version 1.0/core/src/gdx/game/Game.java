@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import java.util.Random;
 
-public class Game extends Game {
+public class MarioGame extends Game {
     ScrMenu scrMenu;
     ScrPlay scrPlay;
     int nScreen; // 0 for menu, 1 for play

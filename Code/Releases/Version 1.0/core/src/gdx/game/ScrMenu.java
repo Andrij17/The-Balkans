@@ -9,15 +9,15 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class ScrMenu {
+    MarioGame marioGame;
     SprRectangle btnPlay;
-    Game gamMenu;
+    MarioGame marioGame;
     Texture txButtonP, txButtonT, txNamM;
     OrthographicCamera oc;
     SpriteBatch batch;
-    Sprite sprNamM;
 
-    public ScrMenu(Game _game) {  //Referencing the main class.
-        Game = _game;
+    public ScrMenu(MarioGame _MarioGame) {  //Referencing the main class.
+        marioGame = _marioGame;
     }
 
     @Override
@@ -36,7 +36,6 @@ public class ScrMenu {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         batch.setProjectionMatrix(oc.combined);
-        sprNamM.draw(batch);
         btnPlay.draw(batch);
         batch.end();
     }
@@ -83,12 +82,12 @@ public class ScrMenu {
         if (button == Input.Buttons.LEFT) {
             if (isHit(screenX, screenY, btnPlay)) {
                 System.out.println("Hit Play");
-                gamMenu.updateState(1);
+                game.updateState(1);
             }
         }
         return false;
     }
-
+/*
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         return false;
@@ -107,7 +106,7 @@ public class ScrMenu {
     @Override
     public boolean scrolled(int amount) {
         return false;
-    }
+    }*/
 
     public boolean isHit(int nX, int nY, Sprite sprBtn) {
         if (nX > sprBtn.getX() && nX < sprBtn.getX() + sprBtn.getWidth() && nY > sprBtn.getY() && nY < sprBtn.getY() + sprBtn.getHeight()) {

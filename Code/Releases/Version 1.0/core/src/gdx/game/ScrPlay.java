@@ -12,6 +12,7 @@ import java.util.Random;
 
 public class ScrPlay {
     SpriteBatch batch;
+    MarioGame marioGame;
     OrthographicCamera oc;
     SprMario sprMario;
     SprGoomba sprGoomba;
@@ -29,8 +30,8 @@ public class ScrPlay {
     double d = rand2.nextInt(1001) / 1000;
 
 
-    public ScrMenu(Game _game) {  //Referencing the main class.
-        Game = _game;
+    public ScrMenu(MarioGame _MarioGame) {  //Referencing the main class.
+        marioGame = _marioGame;
     }
 
     @Override
