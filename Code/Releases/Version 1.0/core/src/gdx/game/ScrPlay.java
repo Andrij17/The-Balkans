@@ -30,7 +30,7 @@ public class ScrPlay implements Screen, InputProcessor {
     Random rand2 = new Random();
     double dYspeedM;
     double dYspeedP;
-    int n = rand1.nextInt(5000) + 1;
+    int n = rand1.nextInt(5000) + 1, nLives=3;
     double d = rand2.nextInt(1001) / 1000;
 
 
@@ -46,11 +46,11 @@ public class ScrPlay implements Screen, InputProcessor {
         oc.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         oc.update();
         sprMario= new SprMario(60,95,50,50);
-        sprGoomba=new SprGoomba(690,700,600,50);
+        sprGoomba=new SprGoomba(55,45,600,50);
         sprPowerupGrowth=new SprPowerup(600, 50, "Growth_power_up.png");
         sprPowerupInvincibility=new SprPowerup(600, 50, "Invincibility_power_up.png");
         sprPowerupSpeed=new SprPowerup(600, 50, "speed_power_up.png");
-        sprRectangle=new SprRectangle(600, 250, "Platform for computer science_-1_.png");
+        sprRectangle=new SprRectangle(600, 100, "Platform for computer science_-1_.png");
         teximg = new Texture("background.jpg");
         texbackgroundTexture = new TextureRegion(new Texture("background.jpg"), 0, 0, 640, 500);
     }
@@ -99,20 +99,28 @@ public class ScrPlay implements Screen, InputProcessor {
         n++;
         //Growth Powerup spawning
         sprPowerupGrowth.setX(sprPowerupGrowth.getX() -5);
-        if(n%1400==0){
+        if(n%14000==0){
             sprPowerupGrowth.setX(600);
         }
 
         //Invincibility Powerup spawning
         sprPowerupInvincibility.setX(sprPowerupInvincibility.getX() -6);
-        if(n%2963==0){
+        if(n%29630==0){
             sprPowerupInvincibility.setX(600);
         }
 
         //Speed Powerup spawning
         sprPowerupSpeed.setX(sprPowerupSpeed.getX() -5);
-        if(n % 2129 == 0){
+        if(n % 21290 == 0){
             sprPowerupSpeed.setX(600);
+        }
+
+        //Hit detection
+        if (isHitS(sprMario, sprGoomba)) {
+            nLives-=1;
+            System.out.println(nLives);
+
+            sprMario.setX(50);
         }
 
         batch.begin();
