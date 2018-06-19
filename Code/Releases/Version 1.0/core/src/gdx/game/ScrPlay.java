@@ -29,12 +29,12 @@ public class ScrPlay {
     double d = rand2.nextInt(1001) / 1000;
 
 
-    public ScrMenu(Game _gamMenu) {  //Referencing the main class.
-        Game = _Game;
+    public ScrMenu(Game _game) {  //Referencing the main class.
+        Game = _game;
     }
 
     @Override
-    public void create () {
+    public void show () {
         batch = new SpriteBatch();
         oc = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         oc.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
