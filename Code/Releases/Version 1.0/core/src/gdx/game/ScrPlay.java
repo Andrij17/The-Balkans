@@ -30,8 +30,9 @@ public class ScrPlay implements Screen, InputProcessor {
     Random rand2 = new Random();
     double dYspeedM;
     double dYspeedP;
-    int n = rand1.nextInt(5000) + 1, nLives=3;
+    int n = rand1.nextInt(5000) + 1, nLives=17;
     double d = rand2.nextInt(1001) / 1000;
+    boolean isTouching=false;
 
 
     public
@@ -50,7 +51,7 @@ public class ScrPlay implements Screen, InputProcessor {
         sprPowerupGrowth=new SprPowerup(600, 50, "Growth_power_up.png");
         sprPowerupInvincibility=new SprPowerup(600, 50, "Invincibility_power_up.png");
         sprPowerupSpeed=new SprPowerup(600, 50, "speed_power_up.png");
-        sprRectangle=new SprRectangle(600, 100, "Platform for computer science_-1_.png");
+        sprRectangle=new SprRectangle(180,90,600, 200, "Platform for computer science_-1_.png");
         teximg = new Texture("background.jpg");
         texbackgroundTexture = new TextureRegion(new Texture("background.jpg"), 0, 0, 640, 500);
     }
@@ -86,17 +87,18 @@ public class ScrPlay implements Screen, InputProcessor {
 
         //Goomba sliding
         sprGoomba.setX(sprGoomba.getX()-2);
-        if(sprGoomba.getX()==-sprGoomba.getWidth()){
-            sprGoomba.setX(Gdx.graphics.getWidth());
-        }
-
-        //Platform sliding
-        sprRectangle.setX(sprRectangle.getX()-1);
-        if(sprRectangle.getX()==-sprRectangle.getWidth()){
-            sprRectangle.setX(Gdx.graphics.getWidth());
+        if(sprGoomba.getX()==0){
+            sprGoomba.setX(600);
         }
 
         n++;
+        //Platform sliding
+        sprRectangle.setX(sprRectangle.getX()-1);
+        if(n%630==0){
+            sprPowerupInvincibility.setX(600);
+        }
+
+
         //Growth Powerup spawning
         sprPowerupGrowth.setX(sprPowerupGrowth.getX() -5);
         if(n%14000==0){
@@ -109,18 +111,31 @@ public class ScrPlay implements Screen, InputProcessor {
             sprPowerupInvincibility.setX(600);
         }
 
+
         //Speed Powerup spawning
         sprPowerupSpeed.setX(sprPowerupSpeed.getX() -5);
         if(n % 21290 == 0){
             sprPowerupSpeed.setX(600);
         }
 
-        //Hit detection
-        if (isHitS(sprMario, sprGoomba)) {
+        //Hit detection with goomba on side
+        if (isHitS(sprMario, sprGoomba) && Math.abs(sprMario.getY()-sprGoomba.getY())<50 && Math.abs(sprMario.getX()-sprGoomba.getX())>50) {
             nLives-=1;
-            System.out.println(nLives);
+            System.out.println("Lives:"+nLives);
+        }
 
-            sprMario.setX(50);
+        //Hit detection with goomba on top
+        if (isHitS(sprMario, sprGoomba) && Math.abs(sprMario.getX()-sprGoomba.getX())<50){
+            sprGoomba.setPosition(700, 50);
+        }
+
+        //Hit detection with platform
+        if (isHitS(sprMario, sprRectangle)){
+            sprMario.setY(sprRectangle.getY()+sprRectangle.getHeight());
+        }
+
+        if(nLives<0){
+            marioGame.updateState(2);
         }
 
         batch.begin();

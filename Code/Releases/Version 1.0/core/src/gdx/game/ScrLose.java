@@ -6,19 +6,17 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class ScrMenu implements Screen, InputProcessor {
+public class ScrLose  implements Screen, InputProcessor {
     MarioGame marioGame;
-    SprRectangle btnPlay;
-    //MarioGame marioGame;
-/*    Texture txButtonP, txButtonT, txNamM;*/
+    SprRectangle sprRectangle;
+    /*    Texture txButtonP, txButtonT, txNamM;*/
     OrthographicCamera oc;
     SpriteBatch batch;
 
-    public ScrMenu(MarioGame _marioGame) {  //Referencing the main class.
+    public ScrLose(MarioGame _marioGame) {  //Referencing the main class.
         marioGame = _marioGame;
     }
 
@@ -28,17 +26,17 @@ public class ScrMenu implements Screen, InputProcessor {
         oc.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         oc.update();
         batch = new SpriteBatch();
-        btnPlay = new SprRectangle(300,90, 100, 100, "Play_button.jpg");
+        sprRectangle = new SprRectangle(100,100,100, 100, "youlose.png");
         Gdx.input.setInputProcessor(this);
     }
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 1, 0, 1); //Green background.
+        Gdx.gl.glClearColor(0, 1, 1, 1); //Green background.
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         batch.setProjectionMatrix(oc.combined);
-        btnPlay.draw(batch);
+        sprRectangle.draw(batch);
         batch.end();
     }
 
@@ -81,7 +79,7 @@ public class ScrMenu implements Screen, InputProcessor {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if (button == Input.Buttons.LEFT) {
-            if (isHit(screenX, screenY, btnPlay)) {
+            if (isHit(screenX, screenY, sprRectangle)) {
                 System.out.println("Hit Play");
                 marioGame.updateState(1);
             }

@@ -14,6 +14,7 @@ import java.util.Random;
 public class MarioGame extends Game {
     ScrMenu scrMenu;
     ScrPlay scrPlay;
+    ScrLose scrLose;
     int nScreen; // 0 for menu, 1 for play
 
     public void updateState(int _nScreen) {
@@ -22,6 +23,8 @@ public class MarioGame extends Game {
             setScreen(scrMenu);
         } else if (nScreen == 1) {
             setScreen(scrPlay);
+        }else if (nScreen == 2) {
+            setScreen(scrLose);
         }
     }
 
@@ -31,6 +34,7 @@ public class MarioGame extends Game {
         // notice that "this" is passed to each screen. Each screen now has access to methods within the "game" master program
         scrMenu = new ScrMenu(this);
         scrPlay = new ScrPlay(this);
+        scrLose = new ScrLose(this);
         updateState(0);
     }
 
